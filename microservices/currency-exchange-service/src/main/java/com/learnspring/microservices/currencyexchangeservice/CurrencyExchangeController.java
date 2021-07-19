@@ -19,7 +19,7 @@ public class CurrencyExchangeController {
 	
 	
 	@GetMapping(path="/currency-exchange/from/{from}/to/{to}")
-	public CurrencyExchange retrieveChangeValue(@PathVariable String from, @PathVariable String to) {
+	public CurrencyExchange retrieveExchangeValue(@PathVariable String from, @PathVariable String to) {
 		CurrencyExchange currency = currencyRepository.findByFromAndTo(from, to);
 		if(currency == null) {
 			throw new RuntimeException("Unable to find the Exchange");
