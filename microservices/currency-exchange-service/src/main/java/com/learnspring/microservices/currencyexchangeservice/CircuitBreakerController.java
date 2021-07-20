@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 
 @RestController
@@ -20,8 +21,10 @@ public class CircuitBreakerController {
 	
 	
 	// Circuit Breaker Pattern
-	@CircuitBreaker(name = "sample-api", fallbackMethod = "hardCoded")
+	//@CircuitBreaker(name = "sample-api", fallbackMethod = "hardCoded")
 	
+	//RateLimiter(Check the configuration")
+	@RateLimiter(name = "default")
 	public String sampleApi() {
 		logger.info("Sample API Recieved");
 		new RestTemplate().getForEntity("http://localhost:8080/sampleapi", CircuitBreakerController.class);
